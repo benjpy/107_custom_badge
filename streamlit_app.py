@@ -127,7 +127,7 @@ with col1:
         st.warning("⚠️ **Important**: You must **download** the image above and **upload it manually** to your post. Social platforms do not allow automatic image attachment.")
         
         st.markdown("### Post Text")
-        share_text = st.text_area("Edit your message here:", value=DEFAULT_SHARE_TEXT, height=150)
+        share_text = st.text_area("Edit your message here:", value=DEFAULT_SHARE_TEXT, height=150, key="share_text_v2")
         
         st.caption("Copy this text for your post:")
         st.code(share_text, language="text")
