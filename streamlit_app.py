@@ -31,7 +31,7 @@ st.markdown("""
 
 # Constants
 BASE_IMAGE_PATH = 'card-share.png'
-DEFAULT_SHARE_TEXT = """Looking forward to meeting #robotics #investors at the @SOSV Robotics Matchup on Dec 1-5. It's 100% virtual and free > https://sosv.com/sosv-matchups/"""
+DEFAULT_SHARE_TEXT = """Looking forward to meeting #robotics #investors and #founders at the @SOSV #RoboticsMatchup on Dec 1-5. It's 100% virtual and free > https://sosv.com/sosv-matchups/"""
 
 def process_image(photo_file):
     try:
