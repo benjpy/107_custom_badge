@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robotics Event Card Customizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Event Card Customizer</h1>
+            <p>Personalize your robotics event card to share with your network.</p>
+        </header>
+
+        <main>
+            <div class="editor-panel">
+                <form id="customizer-form">
+                    <div class="form-group">
+                        <label for="photo">Upload Your Photo</label>
+                        <input type="file" id="photo" name="photo" accept="image/*" required>
+                        <small>This will appear in the bottom-left corner.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="text">Add Your Message</label>
+                        <input type="text" id="text" name="text" maxlength="50" placeholder="e.g., Joining the revolution!" required>
+                        <small>Max 50 characters. Appears in bottom-right.</small>
+                    </div>
+
+                    <button type="submit" id="generate-btn">Generate Card</button>
+                </form>
+            </div>
+
+            <div class="preview-panel">
+                <div id="preview-container">
+                    <img id="preview-image" src="" alt="Generated Card Preview" style="display: none;">
+                    <div id="placeholder-text">
+                        <p>Your generated card will appear here.</p>
+                    </div>
+                </div>
+                <a id="download-link" href="#" download="my-robotics-card.png" style="display: none;" class="download-btn">Download Image</a>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
