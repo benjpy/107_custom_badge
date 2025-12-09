@@ -44,33 +44,22 @@ def process_image(photo_file):
     if photo_file:
         try:
             photo = Image.open(photo_file).convert("RGBA")
-            # Target size for bottom-left quadrant
-            target_width = 308
-            target_height = 309
             
-            # Resize/Crop logic
-            photo_ratio = photo.width / photo.height
-            target_ratio = target_width / target_height
+            # Check if square
+            if photo.width != photo.height:
+                st.error("Uploaded image must be square (width equals height).")
+                return None
+
+            # Target size for bottom-left placement
+            target_size = 300
             
-            if photo_ratio > target_ratio:
-                new_height = target_height
-                new_width = int(new_height * photo_ratio)
-            else:
-                new_width = target_width
-                new_height = int(new_width / photo_ratio)
-                
-            photo = photo.resize((new_width, new_height), Image.LANCZOS)
+            photo = photo.resize((target_size, target_size), Image.LANCZOS)
             
-            # Center crop
-            left = (new_width - target_width) / 2
-            top = (new_height - target_height) / 2
-            right = (new_width + target_width) / 2
-            bottom = (new_height + target_height) / 2
+            # Paste into bottom-left corner
+            paste_x = 0
+            paste_y = base_img.height - target_size
             
-            photo = photo.crop((left, top, right, bottom))
-            
-            # Paste into bottom-left (0, 309)
-            base_img.paste(photo, (0, 309))
+            base_img.paste(photo, (paste_x, paste_y), photo if photo.mode == 'RGBA' else None)
             
         except Exception as e:
             st.error(f"Error processing uploaded image: {e}")
@@ -94,7 +83,7 @@ if 'generated_image' not in st.session_state:
 
 with col1:
     st.subheader("Customize")
-    uploaded_file = st.file_uploader("Upload your photo, logo or product", type=['png', 'jpg', 'jpeg'])
+    uploaded_file = st.file_uploader("Upload your photo, logo or product (Square image required)", type=['png', 'jpg', 'jpeg'])
     
     generate_btn = st.button("Generate Card", type="primary")
 
