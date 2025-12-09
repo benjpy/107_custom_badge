@@ -51,7 +51,7 @@ def process_image(photo_file):
                 return None
 
             # Target size for bottom-left placement
-            target_size = 300
+            target_size = 308
             
             photo = photo.resize((target_size, target_size), Image.LANCZOS)
             

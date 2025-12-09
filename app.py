@@ -40,8 +40,7 @@ def generate():
 
                     # Target size for bottom-left placement
                     # The quadrant is roughly 308 wide by 309 high. 
-                    # We'll use 300x300 to fit nicely at the bottom.
-                    target_size = 300
+                    target_size = 308
                     
                     photo = photo.resize((target_size, target_size), Image.LANCZOS)
                     
