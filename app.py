@@ -33,37 +33,25 @@ def generate():
             if photo_file.filename != '':
                 try:
                     photo = Image.open(photo_file).convert("RGBA")
-                    # Target size for bottom-left quadrant
-                    target_width = 308
-                    target_height = 309
                     
-                    # Resize/Crop logic to fill the quadrant nicely
-                    # We'll use ImageOps.fit or manual resizing to cover the area
-                    # For simplicity, let's resize to cover and center crop
-                    photo_ratio = photo.width / photo.height
-                    target_ratio = target_width / target_height
+                    # Check if square
+                    if photo.width != photo.height:
+                        return "Uploaded image must be square (width equals height).", 400
+
+                    # Target size for bottom-left placement
+                    # The quadrant is roughly 308 wide by 309 high. 
+                    # We'll use 300x300 to fit nicely at the bottom.
+                    target_size = 300
                     
-                    if photo_ratio > target_ratio:
-                        # Photo is wider than target
-                        new_height = target_height
-                        new_width = int(new_height * photo_ratio)
-                    else:
-                        # Photo is taller than target
-                        new_width = target_width
-                        new_height = int(new_width / photo_ratio)
-                        
-                    photo = photo.resize((new_width, new_height), Image.LANCZOS)
+                    photo = photo.resize((target_size, target_size), Image.LANCZOS)
                     
-                    # Center crop
-                    left = (new_width - target_width) / 2
-                    top = (new_height - target_height) / 2
-                    right = (new_width + target_width) / 2
-                    bottom = (new_height + target_height) / 2
+                    # Paste into bottom-left corner
+                    # x = 0
+                    # y = base_img.height - target_size  (should be 618 - 300 = 318)
+                    paste_x = 0
+                    paste_y = base_img.height - target_size
                     
-                    photo = photo.crop((left, top, right, bottom))
-                    
-                    # Paste into bottom-left (0, 309)
-                    base_img.paste(photo, (0, 309))
+                    base_img.paste(photo, (paste_x, paste_y), photo if photo.mode == 'RGBA' else None)
                     
                 except Exception as e:
                     print(f"Error processing image: {e}")

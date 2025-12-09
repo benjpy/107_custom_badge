@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="container">
         <header>
@@ -22,12 +24,13 @@
                     <div class="form-group">
                         <label for="photo">Upload Your Photo</label>
                         <input type="file" id="photo" name="photo" accept="image/*" required>
-                        <small>This will appear in the bottom-left corner.</small>
+                        <small>Upload a square photo. This will appear in the bottom-left corner.</small>
                     </div>
 
                     <div class="form-group">
                         <label for="text">Add Your Message</label>
-                        <input type="text" id="text" name="text" maxlength="50" placeholder="e.g., Joining the revolution!" required>
+                        <input type="text" id="text" name="text" maxlength="50"
+                            placeholder="e.g., Joining the revolution!" required>
                         <small>Max 50 characters. Appears in bottom-right.</small>
                     </div>
 
@@ -42,11 +45,13 @@
                         <p>Your generated card will appear here.</p>
                     </div>
                 </div>
-                <a id="download-link" href="#" download="my-robotics-card.png" style="display: none;" class="download-btn">Download Image</a>
+                <a id="download-link" href="#" download="my-robotics-card.png" style="display: none;"
+                    class="download-btn">Download Image</a>
             </div>
         </main>
     </div>
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
+
 </html>
